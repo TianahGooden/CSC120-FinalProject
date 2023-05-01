@@ -18,7 +18,7 @@ public class House {
         String mapString = "DIRECTORY of ROOMS";
 
         for (int i = 0; i < this.rooms.size(); i ++) {
-            mapString += "\n  " + (i+1) + ". "+ this.rooms.get(i).getName() + " (" + this.rooms.get(i).getAddress() + ")";
+            mapString += "\n  " + (i+1) + ". "+ this.rooms.get(i).getName() + " (" + this.rooms.get(i).getInformation() + ")";
         }
         return mapString;
     }

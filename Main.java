@@ -4,68 +4,71 @@ public class Main {
     
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        House myHouse = new House();
+        House apartment = new House();
         Player gamer = new Player(null, null);
-        myHouse.addRoom(new Room("Kitchen","The Kitchen is besides x room"));
-        Room myKitchen = new Room("Kitchen", null);
+        apartment.addRoom(new Room("Kitchen","The Kitchen is besides x room"));
+        Room kitchen = new Room("Kitchen", "The kitchen has a refridgerator, toaster, and a small brown table. On the table is a bowl containing one rotten banana. A passage to the left leads to the living room.");
+
         Item cake = new Item("Chocolate Cake", "your roommate's desert (that your not supposed to eat)", "Kitchen (in fridge)");
         System.out.println(cake);
-        //myKitchen.stockItem(cake);
-        //myKitchen.addItem("Chocolate Cake");
-        myKitchen.addItem("Chocolate Cake");
+        kitchen.addItem("Chocolate Cake");
         gamer.recordItem(cake);
 
-
-        
-
-        myHouse.addRoom(new Room("Your bedroom","Your Bedroom is besides x room"));
-        myHouse.addRoom(new Room("Roommate's bedroom","Your Roommate's Bedroom is besides x room"));
-        myHouse.addRoom(new Room("Garden","The Garden is behind your Roommate's Bedroom"));
-        myHouse.addRoom(new Room("Bathroom","The Bathroom is besides x room"));
-        myHouse.addRoom(new Room("Hallway","The Hallway is besides x room"));
-        myHouse.addRoom(new Room("Living Room","The Living Room is besides x room"));
+        apartment.addRoom(new Room("Your bedroom","Your Bedroom is besides x room"));
+        apartment.addRoom(new Room("Roommate's bedroom","Your Roommate's Bedroom is besides x room"));
+        apartment.addRoom(new Room("Garden","The Garden is behind your Roommate's Bedroom"));
+        apartment.addRoom(new Room("Bathroom","The Bathroom is besides x room"));
+        apartment.addRoom(new Room("Hallway","The Hallway is besides x room"));
+        apartment.addRoom(new Room("Living Room","The Living Room is besides x room"));
         //System.out.println(myHouse); prevent player from printing a full map until house has been fully explored?
 
         System.out.println("Welcome Player! What's your name?");
         String s1 = input.nextLine();
-        System.out.println("Hello " + s1 + "! This is a text-adventure game. \nReady to get started?");
-        String s2 = input.nextLine();
-        if (s2.equals("Yes")){
-            System.out.println("Cool! Let's get started!");
-        } else {
-            System.out.println("We're going anyways!");
-        } 
-        System.out.println(s1+", you just got home from a party. You're super hungry so you head straight to the kitchen.");
-        System.out.println("The kitchen has a refrigerator, toaster, and a small brown table. On the table is a bowl containing one rotten banana.");
-        // String s3 = input.nextLine();
-        // if (s3.equals("open refrigerator")){
-        //     System.out.println("In the fridge is leftover chocolate cake, mushroom soup, and expired yogurt.");
-        // } else if (s3.equals("eat banana")){
-        //     System.out.println("Gross! Let's find something else!");
-        // } else {
-        //     System.out.println("I don't understand. Enter a different command");
-        // }
-        // String s4 = input.nextLine();
-        // if (s4.equals("eat yogurt") || s4.equals("eat expired yogurt")) {
-        //     System.out.println("It's expired! Choose something else");
-        // } else if (s4.equals("eat soup") || s4.equals("eat mushroom soup")){
-        //     System.out.println("You hate mushrooms! Eat something else");
-        // } else if (s4.equals("eat cake") || s4.equals("eat chocolate cake")){
-        //     System.out.println("You're about to eat the chocolate cake. There's a note from your roommate: 'Do not eat my chocolate cake.'\nBut, you're still hungry so you eat it anyways");
-        // }
+        System.out.println(s1+"! Welcome home! You just got back from a party. You live in an apartment with your roommate.\nIt has a small kitchen, a living room, two bedrooms, and an adjoining bathroom between the two bedrooms.\nRight now, you're super hungry so you head straight to the kitchen.");
+        System.out.println("The kitchen has a refridgerator, toaster, and a small brown table. On the table is a bowl containing one rotten banana.\nObjective: Find something to eat!");
 
-        // boolean win = false;
-        // while (win == false){
-        //     // set something to win, so when win becomes true while statement endsd
-        //     System.out.println("Do something");
-        //     String boo = input.nextLine();
-        //     System.out.println("woohoo");
+        boolean fridge = false;
+        while (fridge == false){
+            // set something to win, so when win becomes true while statement endsd
+            String userInput = input.nextLine();
+            String line = userInput.toLowerCase();
+            if (line.equals ("open refrigerator") || line.equals ("open fridge") || line.equals("use fridge") || line.equals ("use refrigerator")){
+                System.out.println("In the refrigerator is leftover mushroom soup and your roommate's chocolate cake that has a 'DO NOT EAT' post it on top.");
+                fridge = true;
+            } else if (line.equals("eat banana") || line.equals("eat rotten banana")){
+                System.out.println("Gross! Let's find something else!");
+            } else if (line.equals("use toaster")){
+                System.out.println("There's no bread. Do something else.");
+            } else if (line.equals("show options")){
+                System.out.println("Available options are: 'eat', 'open', 'use', and 'look around'. Additional options will be available later.");
+            } else if (line.equals("look around")){
+                System.out.println(kitchen.getInformation());
+            } else {
+                System.out.println("I don't understand. Try a different command. If you're enter type 'show options'.");
+            }
+        }
 
-        //     if (boo.equals("I win")){
-        //         win = true;
-        //     }
-        // }
-
+        boolean shrink = false;
+        while (shrink == false){
+            String userInput = input.nextLine();
+            String line = userInput.toLowerCase();
+            if (line.equals("eat cake") || line.equals("eat chocolate cake") || line.equals("eat roommates cake") || line.equals("eat roommate's cake") || line.equals("eat roommate's chocolate cake") || line.equals("eat roommates chocolate cake")){
+                System.out.println("This is the best cake of your life! Your halfway done when you suddenly begin to feel dizzy.\nYou blackout!\nWhen you wake up you realize everything is giant! The cake shrunk you!");
+                System.out.println("Your new objective: Unshrink yourself!");
+                shrink = true;
+            } else if (line.equals ("eat soup") || line.equals ("eat mushroom soup") || line.equals("eat leftover soup")){
+                System.out.println("You hate mushrooms! Do something else.");
+            } else if (line.equals("close fridge") || line.equals("close refridgerator") || line.equals("exit kitchen")) {
+                System.out.println("You're hungry! You should eat first!");
+            } else if (line.equals("look around")){
+                System.out.println(kitchen.getInformation());
+                System.out.println("In the refrigerator is leftover mushroom soup and your roommate's chocolate cake that has a 'DO NOT EAT' post it on top.");
+            } else if (line.equals("show options")){
+                System.out.println("Available options are: 'eat', 'open', 'use', and 'look around'. Additional options will be available later.");
+            } else {
+                System.out.println("I don't understand. Try a different command. If you're stuck enter 'show options'.");
+            }
+        }
         input.close();
     }
 }

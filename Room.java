@@ -3,15 +3,15 @@ import java.util.Hashtable;
 public class Room {
 
     protected String name;
-    protected String address;
+    protected String information;
     public Hashtable<String, Boolean> collection;
     
     // constructor
-    public Room(String name, String address) {
+    public Room(String name, String information) {
         // room name aka kitchen, bedroom, living room
         if (name != null) { this.name = name; }
         // location aka beside bathroom, behind kitchen
-        if (address != null) { this.address = address; } 
+        if (information != null) { this.information = information; } 
         // a hashtable of all items in room - if true, item can be removed, if false, item must stay
         this.collection = new Hashtable<String, Boolean>();
     }
@@ -56,8 +56,8 @@ public class Room {
     }
 
     // location of room
-    public String getAddress() {
-        return this.address;
+    public String getInformation() {
+        return this.information;
     } // we can include "bathroom is in between living room and your bedroom"
 
 

@@ -76,7 +76,7 @@ public class Player {
 
   // i dont know what's going on with boolean check
   // how does "use" work compared to "eat"?
-  public void use(String object){
+  public boolean use(String object){
     boolean check;
     if (this.backpack.containsKey(object)){
       check = true;
@@ -85,6 +85,7 @@ public class Player {
       check = false;
       System.out.println(object + " is not in inventory. Grab it to use it.");
     }
+    return check;
   }
 
   // what should i do with walk? Only walk left to right? North, south, east, and west?
@@ -93,34 +94,5 @@ public class Player {
     System.out.println(this.username + " has walked to " + direction + "!");
     return true;
   }
-
-// I don't think we will incorporate fly
-    // public boolean fly(int x, int y){
-    //     if (this.x>100 || this.y>100){
-    //       throw new RuntimeException("Yikes! You've wandered too far. Stay within the map");
-    //     } else {
-    //       System.out.println("New Location is (" + x + ", " + y + ")");
-    //     return true;
-    //     }
-    // }
-
-//I don't think we will incorporate shrink or fly, we only shrink/grow once
-  // public Number shrink(){
-  //   if (this.size<5){
-  //     System.out.println("Can't get any smaller.");
-  //   } else {
-  //     this.size = this.size - 5;
-  //   }
-  //   return this.size;
-  // }
-
-  // public Number grow(){
-  //   if (this.size>50){
-  //     System.out.println("Can't get any bigger");
-  //   } else {
-  //     this.size = this.size + 5;
-  //   }
-  //   return this.size;
-  // }
     
 }
